@@ -1,10 +1,13 @@
 [package]
-name = "bl602-float"
+name = "bl602-hardfloat"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 riscv = "0.7.0"
 riscv-rt = { git = "https://github.com/rust-embedded/riscv-rt" } #riscv-rt (currently unpublished) updates with the proper .a file float ABI
-bl602-hal = { path = "../bl602-hal" }
+bl602-hal = { git = "https://github.com/parkero/bl602-hal.git", branch = "float-support" }
 panic-halt = "0.2.0"
+embedded-time = "*"
+panic-write = "0.1.0"
+
