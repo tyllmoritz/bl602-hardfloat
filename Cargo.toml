@@ -4,5 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-riscv-rt = { path = "../riscv-rt" } #riscv-rt (currently unpublished) updates with the proper .a file float ABI
+riscv = "0.7.0"
+riscv-rt = { git = "https://github.com/rust-embedded/riscv-rt" } #riscv-rt (currently unpublished) updates with the proper .a file float ABI
 panic-halt = "0.2.0"
