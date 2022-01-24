@@ -6,4 +6,5 @@ edition = "2021"
 [dependencies]
 riscv = "0.7.0"
 riscv-rt = { git = "https://github.com/rust-embedded/riscv-rt" } #riscv-rt (currently unpublished) updates with the proper .a file float ABI
+bl602-hal = { path = "../bl602-hal" }
 panic-halt = "0.2.0"
