@@ -14,7 +14,6 @@ use hal::{
     gpio::*,
     pac,
     serial::*,
-    timer::*,
 };
 
 #[riscv_rt::entry]
@@ -28,12 +27,9 @@ fn main() -> ! {
     // Set up all the clocks we need
     let clocks = init_clocks(&mut gpio.clk_cfg);
 
-    // configure our two timer channels
-    let (timer_ch0, mut timer_ch1) = init_timers(dp.TIMER, &clocks);
-
     // Set up uart output for debug printing. Since this microcontroller has a pin matrix,
     // we need to set up both the pins and the muxes
-    let mut serial = init_usb_serial(
+    let serial = init_usb_serial(
         dp.UART,
         clocks,
         2_000_000.Bd(),
@@ -76,22 +72,6 @@ fn init_clocks(config: &mut ClkCfg) -> Clocks {
         .sys_clk(SysclkFreq::Pll160Mhz)
         .uart_clk(UART_PLL_FREQ.Hz())
         .freeze(config)
-}
-
-fn init_timers(
-    timer: pac::TIMER,
-    clocks: &Clocks,
-) -> (ConfiguredTimerChannel0, ConfiguredTimerChannel1) {
-    let timers = timer.split();
-    let timer_ch0 = timers
-        .channel0
-        .set_clock_source(ClockSource::Fclk(&clocks), 160_000_000_u32.Hz());
-
-    let timer_ch1 = timers
-        .channel1
-        .set_clock_source(ClockSource::Fclk(&clocks), 160_000_000_u32.Hz());
-
-    (timer_ch0, timer_ch1)
 }
 
 fn init_usb_serial<MODE>(
