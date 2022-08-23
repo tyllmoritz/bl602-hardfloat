@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-riscv = "0.7.0"
-riscv-rt = "0.8.1"
+riscv = "0.8.0"
+riscv-rt = "0.9.0"
 bl602-hal = { git = "https://github.com/sipeed/bl602-hal.git" }
 panic-halt = "0.2.0"
 embedded-time = "*"
