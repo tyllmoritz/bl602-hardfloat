@@ -14,5 +14,9 @@ rustflags = [
 ]
 runner = "blash --port COM4 --monitor-baud 2000000 --"
 
+
+[unstable]
+build-std = ["core"]
+
 [build]
 target = "riscv32imafc-unknown-none-elf.json"
